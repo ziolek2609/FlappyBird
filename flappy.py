@@ -244,8 +244,7 @@ def showWelcomeAnimation():
             if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
                 pygame.quit()
                 sys.exit()
-        if blink.value == 1:
-                print("blink")
+            if event.type == KEYDOWN and (event.key == K_SPACE or event.key == K_UP):
                 # make first flap sound and return values for mainGame
                 SOUNDS['wing'].play()
                 return {
@@ -253,7 +252,6 @@ def showWelcomeAnimation():
                     'basex': basex,
                     'playerIndexGen': playerIndexGen,
                 }
-                blink.value == 0
 
         # adjust playery, playerIndex, basex
         if (loopIter + 1) % 5 == 0:
@@ -312,15 +310,18 @@ def mainGame(movementInfo):
 
 
     while True:
+        if blink.value == 1:
+            print("BLINK")
+            if playery > -2 * IMAGES['player'][0].get_height():
+                playerVelY = playerFlapAcc
+                playerFlapped = True
+                SOUNDS['wing'].play()
+                blink.value = 0        
         for event in pygame.event.get():
             if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
                 pygame.quit()
                 sys.exit()
-            if event.type == KEYDOWN and (event.key == K_SPACE or event.key == K_UP):
-                if playery > -2 * IMAGES['player'][0].get_height():
-                    playerVelY = playerFlapAcc
-                    playerFlapped = True
-                    SOUNDS['wing'].play()
+
 
         # check for crash here
         crashTest = checkCrash({'x': playerx, 'y': playery, 'index': playerIndex},
