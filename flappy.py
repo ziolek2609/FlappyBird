@@ -79,7 +79,7 @@ def main():
     # game over sprite
     IMAGES['gameover'] = pygame.image.load('assets/sprites/gameover.png').convert_alpha()
     # message sprite for welcome screen
-    IMAGES['message'] = pygame.image.load('assets/sprites/message.png').convert_alpha()
+    IMAGES['message3'] = pygame.image.load('assets/sprites/message3.png').convert_alpha()
     # base (ground) sprite
     IMAGES['base'] = pygame.image.load('assets/sprites/base.png').convert_alpha()
 
@@ -145,7 +145,7 @@ def showWelcomeAnimation():
     playerx = int(SCREENWIDTH * 0.2)
     playery = int((SCREENHEIGHT - IMAGES['player'][0].get_height()) / 2)
 
-    messagex = int((SCREENWIDTH - IMAGES['message'].get_width()) / 2)
+    messagex = int((SCREENWIDTH - IMAGES['message3'].get_width()) / 2)
     messagey = int(SCREENHEIGHT * 0.12)
 
     basex = 0
@@ -180,7 +180,7 @@ def showWelcomeAnimation():
         SCREEN.blit(IMAGES['background'], (0,0))
         SCREEN.blit(IMAGES['player'][playerIndex],
                     (playerx, playery + playerShmVals['val']))
-        SCREEN.blit(IMAGES['message'], (messagex, messagey))
+        SCREEN.blit(IMAGES['message3'], (messagex, messagey))
         SCREEN.blit(IMAGES['base'], (basex, BASEY))
 
         pygame.display.update()
@@ -312,7 +312,7 @@ def mainGame(movementInfo):
         visibleRot = playerRotThr
         if playerRot <= playerRotThr:
             visibleRot = playerRot
-        
+
         playerSurface = pygame.transform.rotate(IMAGES['player'][playerIndex], visibleRot)
         SCREEN.blit(playerSurface, (playerx, playery))
 
@@ -372,7 +372,7 @@ def showGameOverScreen(crashInfo):
         SCREEN.blit(IMAGES['base'], (basex, BASEY))
         showScore(score)
 
-        
+
 
 
         playerSurface = pygame.transform.rotate(IMAGES['player'][1], playerRot)
