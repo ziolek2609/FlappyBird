@@ -6,7 +6,7 @@ import pygame as pg
 import pandas as pd
 import filterlib as flt
 import blink as blk
-#from pyOpenBCI import OpenBCIGanglion
+from pyOpenBCI import OpenBCIGanglion
 
 from itertools import cycle
 import random
@@ -42,7 +42,7 @@ def blinks_detector(quit_program, blink_det, blinks_num, blink,):
                 
                 
 ####################################################
-    SYMULACJA_SYGNALU = True
+    SYMULACJA_SYGNALU = False
 ####################################################
     mac_adress = 'd2:b4:11:81:48:ad'
 ####################################################
